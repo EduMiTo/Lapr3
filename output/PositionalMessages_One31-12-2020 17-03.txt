@@ -1,0 +1,2 @@
+MMSI: 210950000	BaseDateTime: 31-12-2020 17-03	Latitude: 42.92236	Longitude: -66.97243	SOG: 12.5	COG: 2.4	Heading: 358
+

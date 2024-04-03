@@ -1,0 +1,17 @@
+@startuml
+
+autonumber
+
+actor "Ship Chief Electrical Engineer" as PS
+participant ":System" as S
+activate PS
+
+PS -> S: Wants to know when the current energy generation units are not enough
+
+activate S
+
+S --> PS: Shows the information that was requested.
+deactivate S
+deactivate PS
+
+@enduml

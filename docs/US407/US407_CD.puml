@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class US407{
+-databaseConnection
+-information
++initialize()
+}
+
+
+
+class US407Controller{
+-company
++mapOfManifests()
+}
+
+
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US407Controller..>US407
+
+US407 ..> WriteTxt
+
+
+@enduml

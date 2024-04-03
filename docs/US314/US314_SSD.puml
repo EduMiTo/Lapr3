@@ -1,0 +1,17 @@
+@startuml
+
+autonumber
+
+actor "PortStaff" as PS
+participant ":System" as S
+activate PS
+
+PS -> S: Wants to know the total number of free/occupied slots in the transport vehicle.
+
+activate S
+
+S --> PS: Shows the information that was requested.
+deactivate S
+deactivate PS
+
+@enduml

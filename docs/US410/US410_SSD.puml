@@ -1,0 +1,17 @@
+@startuml
+
+autonumber
+
+actor "Ship Chief Electrical Engineer" as PS
+participant ":System" as S
+activate PS
+
+PS -> S: Wants to know the amount of energy needed  \n to keep the container atits required temperature
+
+activate S
+
+S --> PS: Shows the information that was requested.
+deactivate S
+deactivate PS
+
+@enduml

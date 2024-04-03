@@ -1,0 +1,42 @@
+@startuml
+
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":LargestCircuitUI" as UI
+participant ":LargestCircuitController" as CTRL
+participant ":Company" as COMP
+participant "Graph\n:MatrixGraph" as GRAPH
+participant ":WriteTxt" as TXT
+
+
+activate TM
+
+TM -> UI: Wants to to know the most efficient circuit that \n visits the greatest number of other locations
+
+activate UI
+UI -> CTRL: getLargestCircuit()
+activate CTRL
+
+CTRL -> COMP: getGraph()
+activate COMP
+deactivate COMP
+
+CTRL -> GRAPH : coloredDFS()
+activate GRAPH
+deactivate GRAPH
+
+CTRL -> GRAPH : visit()
+activate GRAPH
+deactivate GRAPH
+
+CTRL -> TXT : writeToFile()
+activate TXT
+deactivate TXT
+
+deactivate CTRL
+UI--> TM: Shows the information
+deactivate UI
+deactivate TM
+
+@enduml

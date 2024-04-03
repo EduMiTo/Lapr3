@@ -1,0 +1,128 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class Ship{
+-mmsi
+-imo
+-callsign
+-ngenerators
+-generatortype
+-shipname
+-vesselType
+-lenght
+-width
+-capacity
+-draft
+-bstShipPosition
++getMMSI()
++getImo()
++getBSTPosition()
++getShipName()
++getVesselType()
++getCallSign()
+
+
+}
+
+class Company{
+-BSTShip
++getBSTShip()
+}
+
+class ShipPosition{
+-aisMessage
+-latitude
+-longitude
+-sog
+-cog
+-heading
+-position
+-cargo
+-transceiver
++getAisMessage()
++getLatitude()
++getLongitude()
++getSog()
++getCog()
++getHeading()
+
+}
+abstract BSTShip{
+-root
++height()
++insert()
++search()
++inOrderIterable()
++organizeSmallSummaryInfo()
++pairShip()
++organize()
++getShipsByMMSI()
++getShipsByCallSign()
++getShipsByIMO()
++smallSummariesBeetwenDate()
++sameVessel()
++orderVesselDes()
+}
+
+abstract BSTShipPosition {
+-root
++height()
++insert()
++getSize()
++searchSpecificDatePeriodCall()
++minDate()
++maxDate()
++calculateDistance()
++toRadian()
++inOrderCalculateDistance()
++inOrderMaxSog()
++inOrderMinSog()
++inOrderMaxCog()
++inOrderMinCog()
++dateDiff()
++distanceBetweenDate()
++search()
++inOrderIterable()
+}
+
+
+class SmallSummary{
+-mmsi
+-numberOfMovements
+-deltaDistance
+-realDistance
+-vesselType
+-sog
++getNumberOfMovements()
++getRealDistance()
++getVesselType()
++getMMSI()
++getSog()
+}
+
+class TopNShipsController{
+-company
++importCSV()
+}
+
+
+TopNShipsController..>Company
+TopNShipsController..>BSTShip
+TopNShipsController..>BSTShipPosition
+TopNShipsController..>ShipPosition
+TopNShipsController..>Ship
+TopNShipsController..>SmallSummary
+TopNShipsController..>WriteTxt
+
+
+BSTShip ...>BSTShipPosition
+BSTShip ...>Ship
+BSTShip ...>SmallSummary
+
+BSTShipPosition ...>ShipPosition
+
+Ship --> ShipPosition
+@enduml

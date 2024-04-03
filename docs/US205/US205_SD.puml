@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+autonumber
+
+actor "ShipCaptain" as SC
+
+participant ":US205UI" as COUI
+participant ":US205Controller" as COC
+participant ":US205" as US
+participant ":WriteToFile" as WT
+
+
+
+activate SC
+
+SC -> COUI: Wants the list of containers to be offloaded in the next port.
+activate COUI
+COUI --> SC: asks the code of the ship (mmsi)
+deactivate COUI
+SC -> COUI:  type the requested data.
+
+activate COUI
+COUI -> COC: createUS205 (mmsi)
+activate COC
+
+COC -> US: create (mmsi)
+activate US
+
+
+US -> US:initialize (mmsi)
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate COC
+COUI --> SC: shows the information.
+
+deactivate COUI
+deactivate SC
+@enduml

@@ -1,0 +1,74 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":ImportUI" as IUI
+participant ":ImportController" as IC
+participant ":Company" as COMP
+participant "tree\n:BSTShip" as BSTS
+participant "insideTree\n:BSTShipPosition" as BSTM
+participant "nship\n:Ships" as S
+participant "nMsg\n:ShipPosition" as M
+participant "file\n:File" as file
+participant "bufferedReader\n:BufferedReader" as br
+participant "header\n:String[]" as header
+participant "line\n:String" as line
+
+
+
+activate TM
+
+TM-> IUI: asks to import ship information from a CSV file
+activate IUI
+IUI--> TM:   asks to select a .csv file
+deactivate IUI
+TM-> IUI: selects the .csv files
+activate IUI
+IUI ->IC: import(file)
+activate IC
+IC -> COMP: getBSTShip
+activate COMP
+deactivate COMP
+
+IC -> COMP: getBSTMessage
+activate COMP
+deactivate COMP
+
+IC -> br : line= readLine()
+activate br
+deactivate br
+
+IC -> line: header= split()
+activate line
+deactivate line
+
+alt ship dont exist
+IC-> M**: create(line[1],line[2],...,line[6],line[14],line[15])
+IC -> BSTM: insert(nMsg)
+activate BSTM
+deactivate BSTM
+IC-> S**: create(line[0],line[7],line[8],...,line[13],insideTree)
+IC -> BSTS:insert(nShip)
+activate BSTS
+deactivate BSTS
+
+else exists
+IC-> BSTS: nShip=search()
+activate BSTS
+deactivate BSTS
+IC -> S: getBSTMessage()
+activate S
+deactivate S
+
+IC-> M**: create(line[1],line[2],...,line[6],line[14],line[15])
+IC -> BSTM: insert(nMsg)
+activate BSTM
+deactivate BSTM
+
+end
+
+deactivate IC
+IUI--> TM: informs operation success
+deactivate IUI
+deactivate TM
+@enduml

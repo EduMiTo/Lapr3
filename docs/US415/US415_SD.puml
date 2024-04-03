@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as TM
+
+participant ":US415UI" as SAUI
+participant ":US415Controller" as SAC
+participant ":ContainerStore" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to know how many generators are needed to the trip
+
+
+activate SAUI
+SAUI -> SAC: neededGenerators()
+activate SAC
+
+SAC -> US: neededGenerators()
+activate US
+US -> US: buildMatrixAuxOfContainers()
+activate US
+deactivate US
+
+US -> US: verifySidesAffected()
+activate US
+deactivate US
+
+US -> US: calculateEnergyNside()
+activate US
+deactivate US
+
+deactivate US
+
+
+
+SAC -> WT: write()
+activate WT
+deactivate WT
+
+deactivate SAC
+SAUI --> TM: shows requested information.
+
+deactivate SAUI
+deactivate TM
+@enduml

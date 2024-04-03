@@ -1,0 +1,57 @@
+@startuml
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+
+class Containers {
+-x
+-y
+-z
+-containerNumber
+-checkDigit
+-isoCode
+-width
+-height
+-length
+-payLoad
+-tare
+-gross
+}
+
+class CargoManifest {
+-containerNumber
+}
+
+class Ship {
+-mmsiCode
+-name
+-imoCode
+-numberEnergyGenerators
+-generatorPower
+-callSign
+-vesselType
+-length
+-width
+-capacity
+-draft
+}
+class Ports {
+-identification
+-name
+}
+
+CargoManifest "*" -- "1..*" Ports : deliver >
+Containers "0..*"--"1" Ports: store >
+
+Containers "1..*"--"1..*" CargoManifest: relate >
+Containers "0..*"--"1" Warehouse: store >
+
+Ship "1"--"1..*" Containers : transport >
+Ship "0..*"--"1" Ports: anchor in>
+
+
+CargoManifest "*" -- "1..*" Warehouse : deliver >
+
+@enduml

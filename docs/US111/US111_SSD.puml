@@ -1,0 +1,19 @@
+@startuml
+autonumber
+
+actor "Project Manager" as TM
+participant ":System" as S
+
+activate TM
+
+TM-> S: asks to import data from java to database
+activate S
+S --> TM:   show the types
+deactivate S
+TM-> S: selects the types
+activate S
+S --> TM: informs operation success
+
+deactivate S
+deactivate TM
+@enduml

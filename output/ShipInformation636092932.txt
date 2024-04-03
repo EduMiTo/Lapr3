@@ -1,0 +1,17 @@
+Ship MMSI number: 636092932.
+Ship Vessel Name: MSC ILONA.
+Start date time: Thu Dec 31 12:06:00 WET 2020.
+End date time: Thu Dec 31 21:20:00 WET 2020.
+Time to do all the movements: 9h 14m 0s.
+Total number of movements: 4.
+Max sog: 0,00.
+Min sog: 0,00.
+Max Cog: 170,40.
+Min Cog: 169,60.
+Departure latitude: 26,53.
+Departure longitude: -78,77.
+Arrive latitude: 26,53.
+Arrive longitude: -78,77.
+distance: 19,65 m.
+linear distance: 7,53 m.
+

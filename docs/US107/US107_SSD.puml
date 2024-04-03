@@ -1,0 +1,17 @@
+@startuml
+autonumber
+
+actor "Trafic Manager" as C
+participant ":System" as S
+activate C
+
+C -> S: asks to show pair of ships with close departure/arrival
+
+activate S
+S --> C: show the pair
+deactivate S
+
+
+deactivate S
+deactivate C
+@enduml

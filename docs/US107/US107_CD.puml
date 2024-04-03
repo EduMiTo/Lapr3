@@ -1,0 +1,100 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class Ship{
+-mmsi
+-imo
+-callsign
+-ngenerators
+-generatortype
+-shipname
+-vesselType
+-lenght
+-width
+-capacity
+-draft
+-bstShipPosition
++getMMSI()
++getBSTPosition()
+
+
+
+}
+
+class Company{
+-BSTShip
++getBSTShip()
+}
+
+class ShipPosition{
+-aisMessage
+-latitude
+-longitude
+-sog
+-cog
+-heading
+-position
+-cargo
+-transceiver
++getAisMessage()
++getLatitude()
++getLongitude()
++getSog()
++getCog()
+}
+abstract BSTShip{
+-root
++search()
++inOrderIterable()
++organizeSmallSummaryInfo()
++pairShip()
++organize()
+}
+
+abstract BSTShipPosition {
+-root
++minDate()
++maxDate()
++calculateDistance()
++toRadian()
++inOrderCalculateDistance()
++inOrderIterable()
+}
+
+class SmallSummary{
+-mmsi
+-numberOfMovements
+-deltaDistance
+-realDistance
+-vesselType
+-sog
++getNumberOfMovements()
++getRealDistance()
++getVesselType()
++getMMSI()
++getSog()
+}
+
+
+PairShipController ..>Company
+PairShipController ..>BSTShip
+PairShipController ..>BSTShipPosition
+PairShipController ..>ShipPosition
+PairShipController ..>Ship
+
+PairShipController..>WriteTxt
+
+
+
+BSTShip ...>BSTShipPosition
+BSTShip ...>Ship
+BSTShip ...>SmallSummary
+
+
+BSTShipPosition ...>ShipPosition
+
+Ship --> ShipPosition
+@enduml

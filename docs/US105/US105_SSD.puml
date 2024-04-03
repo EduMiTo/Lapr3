@@ -1,0 +1,22 @@
+@startuml
+autonumber
+
+actor "Trafic Manager" as C
+participant ":System" as S
+activate C
+
+C -> S: asks to show small information about all ships
+
+activate S
+S --> C: asks the ascending/number of movements \n descending/Traveled Distance
+deactivate S
+
+C -> S: type the requested data
+
+activate S
+S --> C: shows the information associated
+deactivate S
+
+deactivate S
+deactivate C
+@enduml

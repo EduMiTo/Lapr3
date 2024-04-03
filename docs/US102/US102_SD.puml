@@ -1,0 +1,50 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+
+participant ":SearchShipUI" as SSUI
+participant ":SearchShipController" as SSC
+participant ":Company" as COMP
+participant ":BSTShip" as BSTS
+
+activate TM
+
+TM -> SSUI: wants to search the details of a ship.
+activate SSUI
+SSUI --> TM: asks for one of the 3 unique codes(MMSI, IMO or Call Sign).
+deactivate SSUI
+TM -> SSUI: inserts the requested data.
+
+activate SSUI
+SSUI --> SSC: getShipsByMMSI(mmsi)
+activate SSC
+
+SSC --> COMP: getBstShip()
+activate COMP
+deactivate COMP
+
+SSC --> BSTS: getShipsByMMSI(mmsi)
+activate BSTS
+deactivate BSTS
+
+SSC --> BSTS: getShipsByIMO(imo)
+activate BSTS
+deactivate BSTS
+
+SSC --> BSTS: getShipsByCallSign(callSign)
+activate BSTS
+deactivate BSTS
+deactivate SSC
+SSUI --> TM: show the information.
+
+deactivate SSUI
+
+TM -> SSUI: shows the inserted data and requests confirmation.
+activate SSUI
+
+SSUI --> TM: informs success of operation.
+
+deactivate SSUI
+deactivate TM
+@enduml

@@ -1,0 +1,64 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":TopNShipsUI" as TNSUI
+participant ":TopNShipsController" as TNSC
+participant ":Company" as COMP
+participant ":BSTShip" as BSTS
+participant ":BSTShipPosition" as BSTSP
+participant ":Ships" as S
+participant ":ShipPosition" as SP
+
+
+activate TM
+TM -> TNSUI: request to get the top n ships
+activate TNSUI
+
+TNSUI --> TM: asks to insert the value of n
+deactivate TNSUI
+TM -> TNSUI: insert the value of n
+
+activate TNSUI
+TNSUI --> TNSC: ShowShipInformation(mmsi)
+activate TNSC
+
+TNSC --> COMP: getBST()
+activate COMP
+deactivate COMP
+TNSC --> BSTS: list <ship> = inOrderIterable()
+activate BSTS
+deactivate BSTS
+
+TNSC --> S: bstM = getBSTMsg()
+
+activate S
+deactivate S
+TNSC -->SP: firstMove= getMinDate()
+activate SP
+deactivate SP
+TNSC -->SP: lastMove= getMaxDate()
+activate SP
+deactivate SP
+
+TNSC --> BSTSP: inorderCalculateDistance()
+activate BSTSP
+deactivate BSTSP
+
+TNSC --> BSTSP: inorderMeanSOG()
+activate BSTSP
+deactivate BSTSP
+
+deactivate TNSC
+TNSUI --> TM: show the information
+
+deactivate TNSUI
+
+TM -> TNSUI: confirms the information
+activate TNSUI
+
+TNSUI --> TM: informs success of operation
+
+deactivate TNSUI
+deactivate TM
+@enduml

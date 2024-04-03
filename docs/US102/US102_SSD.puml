@@ -1,0 +1,23 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":System" as S
+
+activate TM
+
+TM-> S: wants to search the details of a ship.
+activate S
+S --> TM:  asks for one of the 3 unique codes(MMSI, IMO or Call Sign).
+deactivate S
+TM-> S: inserts the requested data.
+activate S
+S --> TM: shows the inserted data and requests confirmation.
+deactivate S
+TM-> S: confirms the information.
+activate S
+S --> TM:  informs the traffic manager about the success of the operation.
+
+deactivate S
+deactivate TM
+@enduml

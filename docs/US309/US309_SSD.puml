@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "TrafficManager" as TM
+participant ":System" as S
+activate TM
+
+TM -> S:  wants to create a cargo manifest for a ship.
+
+activate S
+
+S --> TM: shows a warning because the ship is not available
+deactivate S
+deactivate TM
+@enduml

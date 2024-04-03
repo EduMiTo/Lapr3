@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class CargoManifestStore{
+-databaseConnection
+-information
++initialize()
+}
+
+class InsertCargoManifestController{
+-company
++insert()
+}
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+InsertCargoManifestController..>CargoManifestStore
+
+CargoManifestStore ..> WriteTxt
+
+
+@enduml

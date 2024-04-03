@@ -1,0 +1,61 @@
+@startuml
+class Country{
+-name
+-continent
++getContinent()
++getCountry()
+}
+class CountryStore{
+-countryList
++verify()
++save()
+}
+class Gen2dTree{
+-root
++root()
++isEmpty()
++insert()
++findNearestNeighbour()
++buildTree()
+
+}
+class PlaceLocation{
+-latitude
+-longitude
+-country
++getLatitude()
++getLongitude()
++getCountry()
+}
+class Port{
+-id
+-name
+-placeLocation
++getId()
++getName()
++getPlaceLocation()
+}
+
+class Port2dTree{
+
+}
+class PortStore{
+-portList
++getPortList()
+}
+
+PortImportController ..> Port
+PortImportController ..> Country
+PortImportController ..> PlaceLocation
+PortImportController ..>Gen2dTree
+PortImportController ..>Port2dTree
+
+Port ..> Country
+Port ..> PlaceLocation
+
+Port ..>Gen2dTree
+Port ..>Port2dTree
+
+Country ..> CountryStore
+Port ..> PortStore
+@enduml

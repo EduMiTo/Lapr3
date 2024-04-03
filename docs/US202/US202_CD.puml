@@ -1,0 +1,110 @@
+@startuml
+class Port{
+-id
+-name
+-placeLocation
++getId()
++getName()
++getPlaceLocation()
+}
+class Gen2dTree{
+-root
++root()
++isEmpty()
++insert()
++findNearestNeighbour()
++buildTree()
+
+}
+class NearestPort{
+ -ship
+ -bstShip
+ -company
+ -port2dTree
+ -shipPosition
+ +getShipAndShipPosition()
+ +nearestPort()
+ }
+abstract BSTShip{
+-root
++height()
++insert()
++search()
++inOrderIterable()
++organizeSmallSummaryInfo()
++pairShip()
++organize()
++getShipsByMMSI()
++getShipsByCallSign()
++getShipsByIMO()
++smallSummariesBeetwenDate()
++sameVessel()
++orderVesselDes()
+}
+abstract BSTShipPosition {
+-root
++height()
++insert()
++getSize()
++searchSpecificDatePeriodCall()
++minDate()
++maxDate()
++calculateDistance()
++toRadian()
++inOrderCalculateDistance()
++inOrderMaxSog()
++inOrderMinSog()
++inOrderMaxCog()
++inOrderMinCog()
++dateDiff()
++distanceBetweenDate()
++search()
++inOrderIterable()
+}
+class ShipPosition{
+-aisMessage
+-latitude
+-longitude
+-sog
+-cog
+-heading
+-position
+-cargo
+-transceiver
++getAisMessage()
++getLatitude()
++getLongitude()
++getSog()
++getCog()
++getHeading()
+
+}
+class Ship{
+-mmsi
+-imo
+-callsign
+-ngenerators
+-generatortype
+-shipname
+-vesselType
+-lenght
+-width
+-capacity
+-draft
+-bstShipPosition
++getMMSI()
++getImo()
++getBSTPosition()
++getShipName()
++getVesselType()
++getCallSign()
+
+
+}
+NearestPort ..> Gen2dTree
+NearestPort ..> Ship
+ NearestPort ..> BSTShip
+ NearestPort ..> BSTShipPosition
+ NearestPort ..> ShipPosition
+ NearestPort ..> Port
+@enduml

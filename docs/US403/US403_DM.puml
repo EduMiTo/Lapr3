@@ -1,0 +1,26 @@
+@startuml
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+
+class Ports {
+-identification
+-name
+}
+
+class Country {
+-name
+-continent
+}
+
+class PlaceLocation {
+-latitude
+-longitude
+}
+
+Ports "1" --- "1" PlaceLocation
+PlaceLocation "*" --- "1" Country
+
+@enduml

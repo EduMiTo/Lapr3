@@ -1,0 +1,38 @@
+@startuml
+autonumber
+
+actor "Client" as CL
+
+participant ":US305UI" as UI
+participant ":US305Controller" as CTR
+participant ":US305" as US
+participant ":WriteTxt" as TXT
+
+activate CL
+
+CL -> UI: Wants to know the route of a specific container I am leasing.
+activate UI
+UI --> CL: Asks for the mmsi code of the ship and the id of the cargoManifest.
+deactivate UI
+CL -> UI: inserts the requested data.
+
+activate UI
+UI --> CTR: createUS305(registration, containerCode)
+activate CTR
+
+CTR --> US: createUS305(registration, containerCode)
+activate US
+
+US --> US: initialize(registration, containerCode)
+
+US --> TXT: WriteTxt(information)
+activate TXT
+deactivate TXT
+deactivate US
+deactivate CTR
+
+UI --> CL: show the information.
+deactivate UI
+deactivate CL
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "TrafficManager" as TM
+
+participant ":InsertContainersUI" as ICUI
+participant ":InsertContainersController" as ICC
+participant ":ContainersStore" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> ICUI:  wants to send containers in a manifest to a destined ship.
+
+activate ICUI
+ICUI -> ICC: InsertContainers
+activate ICC
+
+ICC -> US: create
+activate US
+
+
+US -> US:initialize
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate ICC
+ICUI --> TM: shows warning because it exceed the ship's available capacity.
+
+deactivate ICUI
+deactivate TM
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class US310{
+-databaseConnection
+-information
++initialize()
+}
+
+class US310Controller{
+-company
++CallUs310()
+}
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US310Controller..>US310
+
+US310 ..> WriteTxt
+
+
+@enduml

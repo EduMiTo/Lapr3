@@ -1,0 +1,63 @@
+@startuml
+autonumber
+
+actor "Traffic Manager " as C
+participant ":ShowShipInfoUI" as SSIUI
+participant ":ShowShipInfoController" as SSIUC
+participant ":Company" as COMP
+participant ":BSTShip" as BSTS
+participant ":BSTShipPosition" as BSTM
+participant ":Ships" as S
+participant ":ShipPosition" as M
+
+
+
+
+
+activate C
+
+
+
+
+activate SSIUI
+
+
+C -> SSIUI:asks to show the information about a ship 
+
+SSIUI --> C: asks the code of the ship
+deactivate SSIUI
+C -> SSIUI: type the requested data
+
+activate SSIUI
+SSIUI --> SSIUC: ShowShipInformation(mmsi)
+activate SSIUC
+
+SSIUC --> COMP: getBST()
+activate COMP
+deactivate COMP
+SSIUC --> BSTS: ship=search()
+activate BSTS
+
+BSTS --> S: bstM= getBSTMsg()
+
+activate S
+deactivate S
+BSTS -->M: firstMove= getMinDate()
+activate M
+deactivate M
+BSTS -->M: lastMove= getMaxDate()
+activate M
+deactivate M
+
+BSTS --> BSTM: getInfo()
+activate BSTM
+deactivate BSTM
+
+deactivate BSTS
+
+deactivate SSIUC
+SSIUI --> C: shows the information associated\n with the ship code
+
+deactivate SSIUI
+deactivate C
+@enduml

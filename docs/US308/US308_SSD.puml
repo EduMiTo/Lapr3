@@ -1,0 +1,19 @@
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "TrafficManager" as TM
+participant ":System" as S
+activate TM
+
+TM -> S:  wants to send containers in a manifest to a destined ship.
+
+activate S
+
+S --> TM: shows warning because it exceed the ship's available capacity.
+deactivate S
+deactivate TM
+@enduml

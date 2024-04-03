@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "TrafficManager" as TM
+
+participant ":InsertCargoManifestUI" as SAUI
+participant ":InsertCargoManifestController" as SAC
+participant ":CargoManifestStore" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to create a cargo manifest for a ship.
+
+activate SAUI
+SAUI -> SAC: InsertCargoManifest
+activate SAC
+
+SAC -> US: create
+activate US
+
+
+US -> US: initialize
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate SAC
+SAUI --> TM: shows a warning because the ship is not available.
+
+deactivate SAUI
+deactivate TM
+@enduml

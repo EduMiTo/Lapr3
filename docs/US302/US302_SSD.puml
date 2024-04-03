@@ -1,0 +1,15 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":System" as S
+
+activate TM
+
+TM-> S: asks to color a graph
+activate S
+S --> TM:   informs operation success
+deactivate S
+
+deactivate TM
+@enduml

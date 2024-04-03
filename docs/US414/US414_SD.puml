@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Chief Electrical Engineer" as TM
+
+participant ":US414UI" as SAUI
+participant ":US414Controller" as SAC
+participant ":ContainerStore" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to know the total energy needed to supply all containers \n keeping in mind the sides exposed to the sun
+
+
+activate SAUI
+SAUI -> SAC: neededEnergyToSupplyContainer()
+activate SAC
+
+SAC -> US: neededEnergyToSupplyContainer()
+activate US
+US -> US: buildMatrixAuxOfContainers()
+activate US
+deactivate US
+
+US -> US: verifySidesAffected()
+activate US
+deactivate US
+
+US -> US: calculateEnergyNside()
+activate US
+deactivate US
+
+deactivate US
+
+
+
+SAC -> WT: write()
+activate WT
+deactivate WT
+
+deactivate SAC
+SAUI --> TM: shows requested information.
+
+deactivate SAUI
+deactivate TM
+@enduml

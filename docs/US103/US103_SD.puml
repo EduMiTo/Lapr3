@@ -1,0 +1,56 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "TrafficManager" as TM
+participant ":PositionalMessagesUI" as PSUI
+participant ":PositionalMessagesController" as PSUC
+participant ":Company" as COMP
+participant ":BSTShip" as BSTS
+participant ":BSTShipPosition" as BSTSP
+participant ":Ships" as S
+participant ":ShipPosition" as SP
+
+activate TM
+
+activate PSUI
+
+
+TM -> PSUI: asks to show the positional messages about a especific ship
+
+PSUI --> TM: asks the code of the ship and the date
+deactivate PSUI
+TM -> PSUI: type the requested data
+
+activate PSUI
+PSUI --> PSUC: ShowPositionalMessages(mmsi)
+activate PSUC
+
+PSUC --> COMP: getBSTShip()
+activate COMP
+deactivate COMP
+COMP --> BSTS: ship=search()
+activate BSTS
+deactivate BSTS
+
+COMP --> S: getMMSI()
+
+activate S
+deactivate S
+
+COMP --> BSTSP : searchSpecificDatePeriodcall ()
+activate BSTSP
+deactivate BSTSP
+
+BSTSP -->SP: getInfo ()
+activate SP
+deactivate SP
+
+deactivate PSUC
+PSUI --> TM: shows the information about the ship
+
+deactivate PSUI
+deactivate TM
+@enduml
+

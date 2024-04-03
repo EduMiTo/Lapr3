@@ -1,0 +1,374 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class Ship{
+-mmsi
+-imo
+-callsign
+-ngenerators
+-generatortype
+-shipname
+-vesselType
+-lenght
+-width
+-capacity
+-draft
+-bstShipPosition
++getMMSI()
++getImo()
++getBSTPosition()
++getShipName()
++getVesselType()
++getCallSign()
+
+
+}
+
+class Company{
+-BSTShip
++getBSTShip()
+}
+
+class ShipPosition{
+-aisMessage
+-latitude
+-longitude
+-sog
+-cog
+-heading
+-position
+-cargo
+-transceiver
++getAisMessage()
++getLatitude()
++getLongitude()
++getSog()
++getCog()
++getHeading()
+
+}
+abstract BSTShip{
+-root
++height()
++insert()
++search()
++inOrderIterable()
++organizeSmallSummaryInfo()
++pairShip()
++organize()
++getShipsByMMSI()
++getShipsByCallSign()
++getShipsByIMO()
++smallSummariesBeetwenDate()
++sameVessel()
++orderVesselDes()
+}
+
+abstract BSTShipPosition {
+-root
++height()
++insert()
++getSize()
++searchSpecificDatePeriodCall()
++minDate()
++maxDate()
++calculateDistance()
++toRadian()
++inOrderCalculateDistance()
++inOrderMaxSog()
++inOrderMinSog()
++inOrderMaxCog()
++inOrderMinCog()
++dateDiff()
++distanceBetweenDate()
++search()
++inOrderIterable()
+}
+class AVLShip{
+-BalanceFactors()
+-rightRotation()
+-leftRotation()
+-twoRotations()
+-balanceNodes()
+-insert()
+}
+class AVLShipPosition{
+-BalanceFactor()
+-rightRotation()
+-leftRotation()
+-twoRotations()
+-balanceNode()
+-insert()
+}
+class SmallSummary{
+-mmsi
+-numberOfMovements
+-deltaDistance
+-realDistance
+-vesselType
+-sog
++getNumberOfMovements()
++getRealDistance()
++getVesselType()
++getMMSI()
++getSog()
+}
+
+class ImportCSVtoBSTController{
+-company
++importCSV()
+}
+class ListSmallSummaryController{
+-company
++importCSV()
+}
+class PositionalMessagesController{
+-company
++importCSV()
+}
+class SearchShipController{
+-company
++importCSV()
+}
+class ShipInfoController{
+-company
++importCSV()
+}
+class TopNShipsController{
+-company
++importCSV()
+}
+class NearestPort{
+-ship
+-bstShip
+-company
+-port2dTree
+-shipPosition
++getShipAndShipPosition()
++nearestPort()
+}
+class PortImportController{
+-company
+-portStore
++portImportCSV()
++nearestPort()
+}
+class US204Controller{
+-company
++CallUs204()
+}
+class US205Controller{
+-company
++CallUs205()
+}
+class US206Controller{
+-company
++CallUs206()
+}
+class US207Controller{
+-company
++CallUs207()
+}
+class US208Controller{
+-company
++CallUs208()
+}
+class US209Controller{
+-company
++CallUs209()
+}
+class US210Controller{
+-company
++CallUs210()
+}
+class US210{
+-databaseConnection
++initialize()
+}
+class US209{
+-databaseConnection
++initialize()
+}
+class US208{
+-databaseConnection
++initialize()
+}
+class US207{
+-databaseConnection
++initialize()
+}
+class US206{
+-databaseConnection
++initialize()
+}
+class US205{
+-databaseConnection
++initialize()
+}
+class US204{
+-databaseConnection
++initialize()
+}
+class Country{
+-name
+-continent
++getContinent()
++getCountry()
+}
+class CountryStore{
+-countryList
++verify()
++save()
+}
+class Gen2dTree{
+-root
++root()
++isEmpty()
++insert()
++findNearestNeighbour()
++buildTree()
+
+}
+class PlaceLocation{
+-latitude
+-longitude
+-country
++getLatitude()
++getLongitude()
++getCountry()
+}
+class Port{
+-id
+-name
+-placeLocation
++getId()
++getName()
++getPlaceLocation()
+}
+
+class Port2dTree{
+
+}
+class PortStore{
+-portList
++getPortList()
+}
+
+US204Controller ..> US204
+US205Controller ..> US205
+US206Controller ..> US206
+US207Controller ..> US207
+US208Controller ..> US208
+US209Controller ..> US209
+US210Controller ..> US210
+
+
+PortImportController ..> Port
+PortImportController ..> Country
+PortImportController ..> PlaceLocation
+PortImportController ..>Gen2dTree
+PortImportController ..>Port2dTree
+
+Port ..> Country
+Port ..> PlaceLocation
+
+Port ..>Gen2dTree
+Port ..>Port2dTree
+
+Country ..> CountryStore
+Port ..> PortStore
+
+
+NearestPort ..> Ship
+NearestPort ..> BSTShip
+NearestPort ..> BSTShipPosition
+NearestPort ..> ShipPosition
+NearestPort ..> Port
+NearestPort ..> Gen2dTree
+
+
+ImportCSVtoBSTController ..> Company
+ImportCSVtoBSTController ..> BSTShip
+ImportCSVtoBSTController ..> BSTShipPosition 
+ImportCSVtoBSTController ..> ShipPosition
+ImportCSVtoBSTController ..> AVLShip
+ImportCSVtoBSTController ..> AVLShipPosition
+ImportCSVtoBSTController ..> Ship
+
+
+ListSmallSummaryController ...>Company
+ListSmallSummaryController ...>BSTShip
+ListSmallSummaryController ...>BSTShipPosition
+ListSmallSummaryController ...>ShipPosition
+ListSmallSummaryController ...>AVLShip
+ListSmallSummaryController ...>AVLShipPosition
+ListSmallSummaryController ...>Ship
+ListSmallSummaryController ...>SmallSummary
+ListSmallSummaryController...>WriteTxt
+
+
+PairShipController ..>Company
+PairShipController ..>BSTShip
+PairShipController ..>BSTShipPosition
+PairShipController ..>ShipPosition
+PairShipController ..>Ship
+PairShipController ..>AVLShip
+PairShipController ..>AVLShipPosition
+PairShipController..>WriteTxt
+
+
+PositionalMessagesController ..>Company
+PositionalMessagesController ..>BSTShip
+PositionalMessagesController ..>BSTShipPosition
+PositionalMessagesController ..>ShipPosition
+PositionalMessagesController ..>Ship
+PositionalMessagesController ..>AVLShip
+PositionalMessagesController ..>AVLShipPosition
+PositionalMessagesController..>WriteTxt
+
+
+SearchShipController..>Company
+SearchShipController..>BSTShip
+SearchShipController..>BSTShipPosition
+SearchShipController..>ShipPosition
+SearchShipController..>Ship
+SearchShipController..>AVLShip
+SearchShipController..>AVLShipPosition
+SearchShipController..>WriteTxt
+
+
+ShipInfoController..>Company
+ShipInfoController..>BSTShip
+ShipInfoController..>BSTShipPosition
+ShipInfoController..>ShipPosition
+ShipInfoController..>Ship
+ShipInfoController..>AVLShip
+ShipInfoController..>AVLShipPosition
+ShipInfoController..>WriteTxt
+
+
+TopNShipsController..>Company
+TopNShipsController..>BSTShip
+TopNShipsController..>BSTShipPosition
+TopNShipsController..>ShipPosition
+TopNShipsController..>Ship
+TopNShipsController..>AVLShip
+TopNShipsController..>AVLShipPosition
+TopNShipsController..>SmallSummary
+TopNShipsController..>WriteTxt
+
+
+BSTShip ...>BSTShipPosition
+BSTShip ...>Ship
+BSTShip ...>SmallSummary
+BSTShip ...>AVLShip
+BSTShip ...>AVLShipPosition
+
+BSTShipPosition ...>ShipPosition
+BSTShipPosition ...> AVLShipPosition
+
+Ship --> ShipPosition
+@enduml

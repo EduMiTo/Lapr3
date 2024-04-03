@@ -1,0 +1,23 @@
+@startuml
+autonumber
+
+actor "Client" as CL
+participant ":System" as S
+
+activate CL
+
+CL-> S: Wants to know the route of a specific container I am leasing.
+activate S
+S --> CL: Asks for the registration of the user and the container.
+deactivate S
+CL-> S: Inserts the requested data.
+activate S
+S --> CL: Shows the inserted data and requests confirmation.
+deactivate S
+CL-> S: Confirms the information.
+activate S
+S --> CL: Informs the client about the success of the operation.
+
+deactivate S
+deactivate CL
+@enduml

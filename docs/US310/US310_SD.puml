@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Port Manager" as TM
+
+participant ":US310UI" as SAUI
+participant ":US310Controller" as SAC
+participant ":US310" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants a map of occupancy rate of all ports.
+
+activate SAUI
+SAUI -> SAC: createUS310
+activate SAC
+
+SAC -> US: create
+activate US
+
+
+US -> US:initialize
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate SAC
+SAUI --> TM: shows the information.
+
+deactivate SAUI
+deactivate TM
+@enduml

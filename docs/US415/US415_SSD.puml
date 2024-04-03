@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "Ship Captain" as TM
+participant ":System" as S
+activate TM
+
+TM -> S:  wants to know how many generators are needed to the trip
+
+activate S
+
+S --> TM: shows requested information
+deactivate S
+deactivate TM
+@enduml

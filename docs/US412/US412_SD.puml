@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Chief Electrical Engineer" as TM
+
+participant ":US412UI" as SAUI
+participant ":US412Controller" as SAC
+participant ":ContainerStore" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to know how much energy to supply for a container
+
+
+activate SAUI
+SAUI -> SAC: calculateEnergySpecificRestrictions()
+activate SAC
+
+SAC -> US: calculateEnergySpecificRestrictions()
+activate US
+deactivate US
+
+SAC -> WT: write()
+activate WT
+deactivate WT
+
+deactivate SAC
+SAUI --> TM: shows requested information.
+
+deactivate SAUI
+deactivate TM
+@enduml

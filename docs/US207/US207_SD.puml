@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+autonumber
+
+actor "Ship Captain" as SP
+
+participant ":US207UI" as USUI
+participant ":US207Controller" as USC
+participant ":US207" as US
+participant ":WriteTxt" as WT
+
+
+
+activate SP
+
+SP -> USUI: want to know how many cargo manifests you carried \n for one year and the average number of containers per manifest
+activate USUI
+USUI --> SP: asks for year and ship code (givenYear, mmsiCode)
+deactivate USUI
+SP -> USUI:  type the requested data
+
+activate USUI
+USUI -> USC: createUS207 (givenYear, mmsiCode)
+activate USC
+
+USC -> US: create (givenYear, mmsiCode)
+deactivate USC
+activate US
+
+
+US -> US:initialize (givenYear, mmsiCode)
+US -> WT: WriteTxt(info)
+deactivate US
+activate WT
+deactivate WT
+
+
+deactivate USC
+USUI --> SP: shows the information
+
+deactivate USUI
+deactivate SP
+@enduml

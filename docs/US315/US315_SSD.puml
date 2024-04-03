@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "PortStaff" as TM
+participant ":System" as S
+activate TM
+
+TM -> S:  want to know if a the container is or is not in a certain position of the vehicle
+
+activate S
+
+S --> TM: shows the information that was requested
+deactivate S
+deactivate TM
+@enduml

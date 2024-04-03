@@ -1,0 +1,23 @@
+@startuml
+autonumber
+
+actor "Fleet Manager" as FM
+participant ":System" as S
+
+activate FM
+
+FM-> S:  Wants to know which ship trips – place and date of origin and \n destination – had an occupancy rate below a certain level, \n considering a 66% occupancy rate limit.
+activate S
+S --> FM: Asks for the ship and the period of time.
+deactivate S
+FM-> S: Inserts the requested data.
+activate S
+S --> FM: Shows the inserted data and requests confirmation.
+deactivate S
+FM-> S: Confirms the information.
+activate S
+S --> FM: Informs the fleet manager about the success of the operation.
+
+deactivate S
+deactivate FM
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+
+autonumber
+
+actor "Port staff" as PS
+participant ":System" as S
+
+activate PS
+
+PS -> S: Wants to fill a dynamically reserved array in memory \n with all the container's information in its respective place.
+
+activate S
+
+S --> PS: Shows the information that was requested.
+deactivate S
+deactivate PS
+
+@enduml

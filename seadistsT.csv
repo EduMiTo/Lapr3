@@ -1,0 +1,14 @@
+from_country,from_port_id,from_port,to_country,to_port_id,to_port,sea_distance
+Denmark,10358,Aarhus,Turkey,246265,Ambarli,3673
+Denmark,10358,Aarhus,Greece,21863,Aspropyrgos,3377
+Denmark,10358,Aarhus,Panama,216593,Balboa,5159
+Denmark,10358,Aarhus,Spain,17386,Barcelona,2403
+Denmark,10358,Aarhus,Georgia,18137,Batumi,4274
+Denmark,10358,Aarhus,Norway,26147,Bergen,433
+Denmark,10358,Aarhus,Tunisia,23448,Bizerte,2631
+Denmark,10358,Aarhus,France,18012,Brest,1004
+Denmark,10358,Aarhus,Peru,30045,Callao,6499
+Denmark,10358,Aarhus,Romania,14459,Constantza,3884
+Denmark,10358,Aarhus,Denmark,10563,Copenhagen,113
+Denmark,10358,Aarhus,Panama,216592,Cristobal,5120
+Denmark,10358,Aarhus,El Salvador,15107,Cutuco,5900

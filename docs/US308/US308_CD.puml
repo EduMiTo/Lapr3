@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class ContainersStore{
+-databaseConnection
+-information
++initialize()
+}
+
+class InsertContainersController{
+-company
++insert()
+}
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+InsertContainersController..>ContainersStore
+
+ContainersStore ..> WriteTxt
+
+
+@enduml

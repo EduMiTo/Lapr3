@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+autonumber
+
+actor "Client" as C
+
+participant ":US312UI" as USUI
+participant ":US312Controller" as USC
+participant ":US312" as US
+participant ":WriteTxt" as WT
+
+
+
+activate C
+
+C -> USUI: want to know the current status of a specific container
+activate USUI
+USUI --> C: asks for container code (containerNumberid, clientLoggin)
+deactivate USUI
+C -> USUI:  type the requested data
+
+activate USUI
+USUI -> USC: createUS312 (containerNumberid, clientLoggin)
+activate USC
+
+USC -> US: create (containerNumberid, clientLoggin)
+deactivate USC
+activate US
+
+
+US -> US:initialize (containerNumberid, clientLoggin)
+US -> WT: WriteTxt(info)
+deactivate US
+activate WT
+deactivate WT
+
+
+deactivate USC
+USUI --> C: shows the information
+
+deactivate USUI
+deactivate C
+@enduml

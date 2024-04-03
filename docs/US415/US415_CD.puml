@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class ContainerStore{
+-containers
++neededGenerators()
++buildMatrixAuxOfContainers()
++verifySidesAffected()
++calculateEnergy3side()
++calculateEnergy2side()
++calculateEnergy1side()
+}
+
+
+
+class US415Controller{
+-company
+-containerStore
++neededGenerators()
+}
+
+
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US415Controller..>ContainerStore
+
+US415Controller ..> WriteTxt
+
+
+@enduml

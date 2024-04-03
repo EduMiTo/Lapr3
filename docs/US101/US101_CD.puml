@@ -1,0 +1,92 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class Ship{
+-mmsi
+-imo
+-callsign
+-ngenerators
+-generatortype
+-shipname
+-vesselType
+-lenght
+-width
+-capacity
+-draft
+-bstShipPosition
++getBSTPosition()
+}
+
+class Company{
+-BSTShip
++getBSTShip()
+}
+
+class ShipPosition{
+-aisMessage
+-latitude
+-longitude
+-sog
+-cog
+-heading
+-position
+-cargo
+-transceiver
+
+}
+abstract BSTShip{
+-root
++insert()
++search()
+}
+
+abstract BSTShipPosition {
+-root
++insert()
+}
+class AVLShip{
+-BalanceFactors()
+-rightRotation()
+-leftRotation()
+-twoRotations()
+-balanceNodes()
+-insert()
+}
+class AVLShipPosition{
+-BalanceFactor()
+-rightRotation()
+-leftRotation()
+-twoRotations()
+-balanceNode()
+-insert()
+}
+
+class ImportCSVtoBSTController{
+-company
++importCSV()
+}
+
+ImportCSVtoBSTController ..> Company
+ImportCSVtoBSTController ..> BSTShip
+ImportCSVtoBSTController ..> BSTShipPosition 
+ImportCSVtoBSTController ..> ShipPosition
+ImportCSVtoBSTController ..> AVLShip
+ImportCSVtoBSTController ..> AVLShipPosition
+ImportCSVtoBSTController ..> Ship
+
+
+
+
+BSTShip ...>BSTShipPosition
+BSTShip ...>Ship
+BSTShip ...>AVLShip
+BSTShip ...>AVLShipPosition
+
+BSTShipPosition ...>ShipPosition
+BSTShipPosition ...> AVLShipPosition
+
+Ship --> ShipPosition
+@enduml

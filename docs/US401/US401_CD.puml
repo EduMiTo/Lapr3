@@ -1,0 +1,43 @@
+@startuml
+class Company{
+-graph
++getGraph()
+}
+
+
+class criticalPortController{
+-company;
+-matrixGraph;
+-portStore;
++writeToFile()
++criticalPort()
++calculateMostCritical()
++biggestPos()
++buildAuxGraphMaritime()
+}
+
+class MatrixGraph{
+-edgeMatrix
++dijkstraNotContinent()
++numVertices()
++vertices()
+}
+
+class WriteTxt{
++writeToFile()
+}
+
+Company..>MatrixGraph
+
+criticalPortController..>MatrixGraph
+criticalPortController..>Company
+
+criticalPortController ..>WriteTxt
+
+
+
+
+
+
+
+@enduml

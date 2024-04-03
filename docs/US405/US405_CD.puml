@@ -1,0 +1,22 @@
+@startuml
+
+class US405{
+-databaseConnection
+-information
++initialize()
+}
+
+class US405Controller{
+-company
++CallUs405()
+}
+
+class WriteTxt{
++writetxt()
+}
+
+US405Controller ..> US405
+
+US405 ..> WriteTxt
+
+@enduml

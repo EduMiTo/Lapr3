@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "ShipCaptain" as SC
+participant ":System" as S
+activate SC
+
+SC -> S: Wants the list of containers to be loaded in the next port
+
+activate S
+S --> SC: asks the code of the ship (mmsi)
+deactivate S
+
+SC -> S: type the requested data
+
+activate S
+S --> SC: shows the information that was requested
+deactivate S
+
+deactivate S
+deactivate SC
+
+@enduml

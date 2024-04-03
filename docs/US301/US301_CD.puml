@@ -1,0 +1,76 @@
+@startuml
+class Company{
+-countryStore
+-borderStore
+-seaDistStore
+-portStore
+-graph
++getCountryStore()
++getPortStore()
++getSeaDistStore()
++getBorderStore()
++getGraph()
++setGraph()
+}
+
+class CountryStore{
+-countryList
++nGenericList()
+}
+
+class BorderStore{
+-borderList
++getCountriesThatHaveBorder()()
+}
+class SeaDistStore{
+-seaDistList
++getSeaDist()()
+}
+class PortStore{
+-portList
++nGenericList()
++closestPortToCapital()
++portsOfSameCountry()
++nClosestPortsOutOfCountry()
+}
+
+class GraphBuilderController{
+-countryStore
+-borderStore
+-seaDistStore
+-portStore
+-graph
+-company
++buildGraph()
+}
+
+class Distance{
++calculateDistance()
+}
+
+class MatrixGraph{
+-edgeMatrix
++addEdge()
+}
+
+Company..>CountryStore
+Company..>BorderStore
+Company..>SeaDistStore
+Company..>PortStore
+Company..>MatrixGraph
+
+GraphBuilderController..>CountryStore
+GraphBuilderController..>BorderStore
+GraphBuilderController..>SeaDistStore
+GraphBuilderController..>PortStore
+GraphBuilderController..>MatrixGraph
+GraphBuilderController..>Company
+GraphBuilderController..>Distance
+
+
+
+
+
+
+
+@enduml

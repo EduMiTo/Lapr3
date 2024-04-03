@@ -1,0 +1,48 @@
+@startuml
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+
+class Employee {
+-name
+}
+
+class Company {
+-designation
+}
+
+class Ship {
+-mmsiCode
+-name
+-imoCode
+-numberEnergyGenerators
+-generatorPower
+-callSign
+-vesselType
+-length
+-width
+-capacity
+-draft
+}
+
+class ShipPosition {
+-baseDateTime
+-latitude
+-longitude
+-sog
+-cog
+-heading
+-position
+-transceiver
+}
+
+Employee "1" --- "1..*" ShipPosition : control >
+
+Ship "1" --- "1..*" ShipPosition : has >
+
+Company "1"--"1..*" Employee: has >
+Company "1"--"1..*" Ship: has >
+
+@enduml

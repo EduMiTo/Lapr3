@@ -1,0 +1,58 @@
+@startuml
+autonumber
+
+actor "Port Manager" as TM
+participant ":closerElementUI" as IUI
+participant ":closerElementController" as IC
+participant ":Company" as COMP
+participant ":CountryStore" as cs
+
+
+participant "graph\n:MatrixGraph" as graph
+
+
+
+activate TM
+
+TM-> IUI: asks to know the closest local to each local by continent
+
+activate IUI
+IUI ->IC: sendContinentToCallDijkstra()
+activate IC
+
+IC -> COMP: getGraph()
+activate COMP
+deactivate COMP
+
+
+IC -> COMP: getCountryStore()
+activate COMP
+deactivate COMP
+
+IC -> IC : callDijkstra()
+activate IC
+IC -> graph : dijkstra()
+activate graph
+deactivate graph
+
+
+
+
+deactivate IC
+
+IC -> IC : getNCloserElement()
+activate IC
+deactivate IC
+
+
+
+
+
+
+
+
+deactivate IC
+IUI--> TM: informs operation success
+deactivate IUI
+deactivate TM
+@enduml

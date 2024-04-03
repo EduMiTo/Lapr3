@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Captain" as TM
+
+participant ":US419UI" as SAUI
+participant ":US419Controller" as SAC
+participant "centerOfMassVessel\n:CenterOfMassVessel" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to know where to position 100 containers
+
+
+activate SAUI
+SAUI -> SAC: centerOfMass()
+activate SAC
+
+SAC -> US: centerOfMass()
+activate US
+US -> US: CenterOfMassVessel()
+activate US
+deactivate US
+
+US -> US: calculateCenterOfMassXWContainer()
+activate US
+deactivate US
+
+US -> US: calculateCenterOfMassYWContainer()
+activate US
+deactivate US
+
+deactivate US
+
+
+
+SAC -> WT: write()
+activate WT
+deactivate WT
+
+deactivate SAC
+SAUI --> TM: shows requested information.
+
+deactivate SAUI
+deactivate TM
+@enduml

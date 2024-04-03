@@ -1,0 +1,6 @@
+MMSI: 228339600
+IMO: IMO9450648
+Call Sign: FLSU
+Ship Name: CMA CGM ALMAVIVA
+Vessel type: 70
+

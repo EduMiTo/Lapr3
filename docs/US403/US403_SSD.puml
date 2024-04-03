@@ -1,0 +1,18 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":System" as S
+
+activate TM
+TM-> S: Wants to to know the most efficient circuit that visits the greatest \n number of other locations once with the shortest total distance.
+activate S
+S --> TM: Shows the inserted data and requests confirmation.
+deactivate S
+TM-> S: Confirms the information.
+activate S
+S --> TM: Informs the Traffic manager about the success of the operation.
+deactivate S
+
+deactivate TM
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class CenterOfMassVessel{
+-length
+-width
+-height
+-proaLength
+-proaHeight
+-popaLength
+-popaHeight
+-baseEstruturalLength
+-baseEstruturalHeight
+-torreLength
+-torreHeight
+-MATERIAL_DENSITY
+-centerOfMassX
+-centerOfMass
++sink()
++pression()
++pressionWithContainers()
+}
+
+
+
+class US420Controller{
+-company
+-containerStore
++centerOfMass()
+}
+
+
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US420Controller..>CenterOfMassVessel
+
+US420Controller ..> WriteTxt
+
+
+@enduml

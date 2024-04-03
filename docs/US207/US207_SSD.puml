@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "Ship Captain" as SP
+participant ":System" as S
+activate SP
+
+SP -> S: want to know how many cargo manifests you carried \n for one year and the average number of containers per manifest
+
+activate S
+S --> SP:  asks for year and ship code (givenYear, mmsiCode)
+deactivate S
+
+SP -> S: type the requested data
+
+activate S
+S --> SP: shows the information that was requested
+deactivate S
+
+deactivate S
+deactivate SP
+
+@enduuml

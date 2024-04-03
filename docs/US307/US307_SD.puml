@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "PortManager" as PM
+
+participant ":InsertCargoManifestUI" as SAUI
+participant ":InsertCargoManifestController" as SAC
+participant ":CargoManifestStore" as US
+participant ":WriteToFile" as WT
+
+
+
+activate PM
+
+PM -> SAUI:  wants to send a cargo manifest destined to a warehouse.
+
+activate SAUI
+SAUI -> SAC: InsertCargoManifest
+activate SAC
+
+SAC -> US: create
+activate US
+
+
+US -> US:initialize
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate SAC
+SAUI --> PM: shows warning because warehouse is full.
+
+deactivate SAUI
+deactivate PM
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+autonumber
+
+actor "Ship Captain" as SC
+participant ":System" as S
+
+activate SC
+
+SC-> S: Wants to know the occupancy rate of a given ship for a given cargo manifest.
+activate S
+S --> SC: Asks for the mmsi code of the ship and the id of the cargoManifest.
+deactivate S
+SC-> S: Inserts the requested data.
+activate S
+S --> SC: Shows the inserted data and requests confirmation.
+deactivate S
+SC-> S: Confirms the information.
+activate S
+S --> SC: Informs the ship captain about the success of the operation.
+
+deactivate S
+deactivate SC
+@enduml

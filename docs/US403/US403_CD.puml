@@ -1,0 +1,46 @@
+@startuml
+
+
+class Company{
+-graph
++getGraph()
+}
+
+class CountryStore{
+-countryList
++getCountryList()
+}
+
+
+class LargestCircuitController{
+-company
+-countryStore
+-matrixGraph
+-portStore
+-bordStore
+
++getLargestCircuit()
++writeToFile()
+
+}
+
+class MatrixGraph{
+-edgeMatrix
++coloredDFS()
++visit()
+}
+
+class WriteTxt{
++writeToFile()
+}
+
+Company..>CountryStore
+Company..>MatrixGraph
+
+LargestCircuitController..>CountryStore
+LargestCircuitController..>MatrixGraph
+LargestCircuitController..>Company
+
+LargestCircuitController ..>WriteTxt
+
+@enduml

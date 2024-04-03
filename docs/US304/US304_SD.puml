@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "TrafficManager" as TM
+
+participant ":US303UI" as SAUI
+participant ":US304Controller" as SAC
+participant ":US304" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to have access to audit trails for a given container of a given cargo manifest.
+
+activate SAUI
+SAUI -> SAC: createUS304
+activate SAC
+
+SAC -> US: create
+activate US
+
+
+US -> US:initialize
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate SAC
+SAUI --> TM: shows the information.
+
+deactivate SAUI
+deactivate TM
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+class Company{
+-countryStore
+-graph
++getCountryStore()
++getGraph()
+}
+
+class CountryStore{
+-countryList
++searchByCapital()
+}
+
+
+
+class GraphColorController{
+-countryStore
+-graph
++color()
++getCountryList()
++getElementsOrderByDegree()
+
+}
+
+class MatrixGraph{
+-edgeMatrix
++adjVertices()
++vertices()
++cGraph()
+}
+
+Company..>CountryStore
+Company..>MatrixGraph
+
+GraphColorController..>CountryStore
+GraphColorController..>MatrixGraph
+GraphColorController..>Company
+
+
+
+
+
+
+
+@enduml

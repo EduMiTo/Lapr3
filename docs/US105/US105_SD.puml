@@ -1,0 +1,59 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as C
+participant ":ListSmallSummaryUI" as LSSUI
+participant ":ListSmallSummaryController" as LSSC
+participant ":Company" as COMP
+participant ":BSTShips" as BSTS
+participant ":BSTShipPosition" as BSTM
+participant ":Ships" as S
+participant ":ShipPosition" as M
+
+
+
+activate C
+
+C -> LSSUI: asks to show small information about all ships
+
+activate LSSUI
+LSSUI--> C: asks the ascending/number of movements \n descending/Traveled Distance
+deactivate LSSUI
+
+C -> LSSUI: type the requested data
+activate LSSUI
+
+LSSUI --> LSSC: getSmallInformation()
+activate LSSC
+
+LSSC--> COMP: getBST()
+activate COMP
+deactivate COMP
+
+LSSC-->  BSTS: inOrderIterable()
+
+activate BSTS
+
+
+BSTS--> S: getMMSI()
+
+activate S
+deactivate S
+
+BSTS--> S: getBSTM()
+
+activate S
+deactivate S
+
+BSTS--> BSTM: getInfo()
+activate BSTM
+deactivate BSTM
+
+deactivate BSTS
+deactivate LSSC
+LSSUI--> C: shows the information associated
+deactivate LSSUI
+
+deactivate LSSUI
+deactivate C
+@enduml

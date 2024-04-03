@@ -1,0 +1,22 @@
+@startuml
+
+class US305{
+-databaseConnection
+-information
++initialize()
+}
+
+class US305Controller{
+-company
++CallUs305()
+}
+
+class WriteTxt{
++writetxt()
+}
+
+US305Controller ..> US305
+
+US305 ..> WriteTxt
+
+@enduml

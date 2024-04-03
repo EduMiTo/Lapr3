@@ -1,0 +1,65 @@
+@startuml
+autonumber
+
+actor "Port Manager" as TM
+participant ":graphColorUI" as IUI
+participant ":graphColorController" as IC
+participant ":Company" as COMP
+participant ":CountryStore" as cs
+
+
+participant "graph\n:MatrixGraph" as graph
+
+
+
+activate TM
+
+TM-> IUI: asks to color a graph
+
+activate IUI
+IUI ->IC: graphColor()
+activate IC
+
+IC -> COMP: getGraph()
+activate COMP
+deactivate COMP
+
+
+IC -> COMP: getCountryStore()
+activate COMP
+deactivate COMP
+
+IC -> graph : vertices()
+activate graph
+deactivate graph
+loop
+
+IC -> cs : searchByCapital()
+activate cs
+deactivate cs
+
+IC -> graph : adjVertices().size()
+activate graph
+deactivate graph
+
+end
+
+IC -> IC : getElementsOrderByDegree()
+
+activate IC
+deactivate IC
+
+IC -> graph : cGraph()
+activate graph
+
+deactivate graph
+
+
+
+
+
+deactivate IC
+IUI--> TM: informs operation success
+deactivate IUI
+deactivate TM
+@enduml

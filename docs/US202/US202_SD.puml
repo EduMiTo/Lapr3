@@ -1,0 +1,54 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+
+participant ":SearchClosePortUI" as SSUI
+participant ":SearchClosePortController" as SSC
+participant ":Company" as COMP
+participant ":BSTShip" as BSTS
+participant "ship\n:Ship" as ship
+participant ":BSTShipPosition" as bstm
+participant "shipPosition\n:ShipPosition" as shipPosition
+participant ":Port2dTree" as p2d
+participant "port\n:Port" as port
+
+
+
+activate TM
+
+TM -> SSUI: wants to search the closest port to a ship.
+activate SSUI
+SSUI --> TM: asks for Call Sign.
+deactivate SSUI
+TM -> SSUI: inserts the requested data.
+
+activate SSUI
+SSUI -> SSC: nearestPort(callSign, date)
+activate SSC
+
+SSC -> COMP: getBstShip()
+activate COMP
+deactivate COMP
+
+SSC -> BSTS: ship=getShipsByCallSign()
+activate BSTS
+deactivate BSTS
+
+SSC -> ship: shipPosition=getCertainPosition()
+activate ship
+ship -> bstm: getShipPosition()
+activate bstm
+deactivate bstm
+deactivate ship
+
+SSC -> p2d: port=findNearestNeighbour()
+activate p2d
+deactivate p2d
+
+deactivate SSC
+SSUI --> TM: show the information.
+
+deactivate SSUI
+deactivate TM
+@enduml

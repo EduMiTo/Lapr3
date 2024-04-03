@@ -1,0 +1,44 @@
+@startuml
+class Company{
+-countryStore
+-graph
++getCountryStore()
++getGraph()
+}
+
+class CountryStore{
+-countryList
++verifyifCountryinContinent()
+}
+
+
+
+class closerElementController{
+-countryStore
+-graph
+
++getNCloserElement()
++sendContinentToCallDijkstra()
++callDijkstra()
+
+}
+
+class MatrixGraph{
+-edgeMatrix
++dijkstra()
+}
+
+Company..>CountryStore
+Company..>MatrixGraph
+
+closerElementController..>CountryStore
+closerElementController..>MatrixGraph
+closerElementController..>Company
+
+
+
+
+
+
+
+@enduml

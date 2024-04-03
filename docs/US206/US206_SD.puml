@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "ShipCaptain" as SC
+
+participant ":US206UI" as CLUI
+participant ":US206Controller" as CLC
+participant ":US206" as US
+participant ":WriteToFile" as WT
+
+
+
+activate SC
+
+SC -> CLUI: wants the list of containers to be loaded in the next port
+activate CLUI
+CLUI --> SC: asks the code of the ship (mmsi)
+deactivate CLUI
+SC -> CLUI:  type the requested data.
+
+activate CLUI
+CLUI -> CLC: createUs206 (mmsi)
+activate CLC
+
+CLC -> US: create (mmsi)
+activate US
+
+US -> US:initialize (mmsi)
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+deactivate CLC
+CLUI --> SC: shows the information.
+
+deactivate CLUI
+deactivate SC
+@enduml

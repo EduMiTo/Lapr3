@@ -1,0 +1,23 @@
+@startuml
+autonumber
+actor "Traffic Manager" as TM
+
+activate TM
+TM -> ":System" : request to get the top n ships
+activate ":System"
+":System" --> TM : asks to insert the value of n
+deactivate ":System"
+
+TM -> ":System" : insert the value of n
+activate ":System"
+":System" --> TM : show the information
+deactivate ":System"
+
+TM -> ":System" : confirms the information
+activate ":System"
+":System" --> TM : informs success of operation
+deactivate ":System"
+
+deactivate TM
+
+@enduml

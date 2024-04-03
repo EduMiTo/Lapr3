@@ -1,0 +1,50 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":constrainedShortestPathUI" as IUI
+participant ":constrainedShortestPathController" as IC
+participant ":Company" as COMP
+participant ":WriteTxt" as wrt
+
+
+participant "graph\n:MatrixGraph" as graph
+
+
+
+activate TM
+
+TM-> IUI: asks to know the shortest path between two locals
+
+activate IUI
+IUI ->IC: selectTypeForDijkstra()
+activate IC
+
+IC -> COMP: getGraph()
+activate COMP
+deactivate COMP
+
+IC -> IC : callDijkstra()
+activate IC
+
+IC -> graph : dijkstraNotContinent()
+activate graph
+deactivate graph
+
+IC -> graph : getSmallestPath()
+activate graph
+deactivate graph
+
+deactivate IC
+
+
+IC -> wrt : writeToFile()
+activate wrt
+deactivate wrt
+
+
+deactivate IC
+IUI--> TM: shows the path
+deactivate IUI
+deactivate TM
+@enduml

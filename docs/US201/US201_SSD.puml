@@ -1,0 +1,19 @@
+@startuml
+autonumber
+
+actor "Port Manager" as TM
+participant ":System" as S
+
+activate TM
+
+TM-> S: asks to import port information from a CSV file
+activate S
+S --> TM:   asks to select a .csv file
+deactivate S
+TM-> S: selects the .csv files
+activate S
+S --> TM: informs operation success
+
+deactivate S
+deactivate TM
+@enduml

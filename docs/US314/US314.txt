@@ -1,0 +1,3 @@
+Empty locations: 44
+Occupied locations: 10
+

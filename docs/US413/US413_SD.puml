@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Ship Chief Electrical Engineer" as TM
+
+participant ":US413UI" as SAUI
+participant ":US413Controller" as SAC
+participant ":ContainerStore" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to know the total energy needed to supply all containers
+
+
+activate SAUI
+SAUI -> SAC: calculateEnergySpecificTrip()
+activate SAC
+
+SAC -> US: calculateEnergySpecificTrip()
+activate US
+US -> US: numberOfRefrigerated()
+activate US
+deactivate US
+
+US -> US: calculateEnergySpecificTripRefri()
+activate US
+deactivate US
+
+US -> US: calculateEnergySpecificTripNotRefri()
+activate US
+deactivate US
+
+deactivate US
+
+
+
+SAC -> WT: write()
+activate WT
+deactivate WT
+
+deactivate SAC
+SAUI --> TM: shows requested information.
+
+deactivate SAUI
+deactivate TM
+@enduml

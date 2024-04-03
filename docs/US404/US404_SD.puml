@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Fleet Manager" as TM
+
+participant ":US404UI" as SAUI
+participant ":US404Controller" as SAC
+participant ":US404" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to know the number of days each ship has been idle\n since the beginning of the current year.
+
+
+activate SAUI
+SAUI -> SAC: idleTime()
+activate SAC
+
+SAC -> US: idleTime()
+activate US
+
+
+US -> US: initialize()
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate SAC
+SAUI --> TM: shows a warning because the ship is not available.
+
+deactivate SAUI
+deactivate TM
+@enduml

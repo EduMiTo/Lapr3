@@ -1,0 +1,38 @@
+@startuml
+autonumber
+
+actor "Ship Captain" as SC
+
+participant ":US209UI" as UI
+participant ":US209Controller" as CTR
+participant ":US209" as US9
+participant ":WriteTxt" as TXT
+
+activate SC
+
+SC -> UI: Wants to know the occupancy rate of a given ship for a given cargo manifest.
+activate UI
+UI --> SC: Asks for the mmsi code of the ship and the id of the date.
+deactivate UI
+SC -> UI: inserts the requested data.
+
+activate UI
+UI --> CTR: createUS209(mmsiCode, givenDate)
+activate CTR
+
+CTR --> US9: createUS209(mmsiCode, givenDate)
+activate US9
+
+US9 --> US9: initialize(mmsiCode, givenDate)
+
+US9 --> TXT: WriteTxt(information)
+activate TXT
+deactivate TXT
+deactivate US9
+deactivate CTR
+
+UI --> SC: show the information.
+deactivate UI
+deactivate SC
+
+@enduml

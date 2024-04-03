@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "TrafficManager" as TM
+
+participant ":US210UI" as SAUI
+participant ":US210Controller" as SAC
+participant ":US210" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to know wich ships will be available on Monday next week and their location.
+
+activate SAUI
+SAUI -> SAC: createUS210
+activate SAC
+
+SAC -> US: create
+activate US
+
+
+US -> US:initialize
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate SAC
+SAUI --> TM: shows the information.
+
+deactivate SAUI
+deactivate TM
+@endumlml

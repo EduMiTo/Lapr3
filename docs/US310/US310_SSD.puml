@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "TrafficManager" as TM
+participant ":System" as S
+activate TM
+
+TM -> S:  wants a map of occupancy rate of all ports.
+
+activate S
+
+S --> TM: shows the information that was requested
+deactivate S
+deactivate TM
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class US404{
+-databaseConnection
+-information
++initialize()
+}
+
+
+
+class US404Controller{
+-company
++insert()
+}
+
+
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US404Controller..>US404
+
+US404 ..> WriteTxt
+
+
+@enduml

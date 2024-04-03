@@ -1,0 +1,15 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":System" as S
+
+activate TM
+
+TM-> S: asks to know wish to know which ports are more critical
+activate S
+S --> TM:   shows the information
+deactivate S
+
+deactivate TM
+@enduml

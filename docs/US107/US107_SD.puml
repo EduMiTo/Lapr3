@@ -1,0 +1,47 @@
+@startuml
+autonumber
+
+actor "Trafic Manager" as C
+participant ":PairShipsUI" as PSUI
+participant ":PairShipsController" as PSC
+participant ":Company" as COMP
+participant ":BSTShips" as BSTS
+participant ":BSTShipPosition" as BSTM
+participant ":Ship" as S
+participant ":ShipPosition" as M
+
+
+
+activate C
+
+C -> PSUI: asks to show pair of ships with close departure/arrival
+
+activate PSUI
+
+PSUI --> PSC: getShips()
+activate PSC
+PSC -->COMP: getBSTS()
+activate COMP
+deactivate COMP
+
+PSC --> BSTS: inOrderIterable()
+activate BSTS
+
+BSTS--> S: getBSTM()
+activate S
+deactivate S
+
+BSTS--> BSTS: verDist()
+activate BSTS
+deactivate BSTS
+
+
+deactivate BSTS
+
+deactivate PSC
+PSUI --> C: show the pair
+deactivate PSUI
+
+
+deactivate C
+@enduml

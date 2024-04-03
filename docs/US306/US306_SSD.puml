@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "TrafficManager" as TM
+participant ":System" as S
+activate TM
+
+TM -> S:  wants to know the occupancy rate of all warehouses and the containers to leave in the next 30 days.
+
+activate S
+
+S --> TM: shows the information that was requested
+deactivate S
+deactivate TM
+@enduml

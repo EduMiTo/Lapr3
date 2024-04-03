@@ -1,0 +1,48 @@
+@startuml
+class Company{
+-graph
++getGraph()
+}
+
+
+class constrainedShortestPathController{
+-company;
+-countryStore;
+-matrixGraph;
+-portStore;
+-borderStore;
+-numberAlg;
++writeToFile()
++selectTypeForDijkstra()
++callDijkstra()
++getPos()
++buildAuxGraphMaritime()
++buildAuxGraphLand()
+
+
+}
+
+class MatrixGraph{
+-edgeMatrix
++dijkstraNotContinent()
++getSmallestPath()
+}
+
+class WriteTxt{
++writeToFile()
+}
+
+Company..>MatrixGraph
+
+constrainedShortestPathController..>MatrixGraph
+constrainedShortestPathController..>Company
+
+constrainedShortestPathController ..>WriteTxt
+
+
+
+
+
+
+
+@enduml

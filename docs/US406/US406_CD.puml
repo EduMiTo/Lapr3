@@ -1,0 +1,22 @@
+@startuml
+
+class US406{
+-databaseConnection
+-information
++initialize()
+}
+
+class US406Controller{
+-company
++CallUs406()
+}
+
+class WriteTxt{
++writetxt()
+}
+
+US406Controller ..> US406
+
+US406 ..> WriteTxt
+
+@enduml

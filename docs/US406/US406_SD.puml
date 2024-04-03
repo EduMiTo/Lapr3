@@ -1,0 +1,38 @@
+@startuml
+autonumber
+
+actor "Fleet Manager" as FM
+
+participant ":US406UI" as UI
+participant ":US406Controller" as CTR
+participant ":US406" as US
+participant ":WriteTxt" as TXT
+
+activate FM
+
+FM -> UI: Wants to know which ship trips – place and date of origin and \n destination – had an occupancy rate below a certain level, \n considering a 66% occupancy rate limit.
+activate UI
+UI --> FM: Asks for the ship code and a period of time.
+deactivate UI
+FM -> UI: Inserts the requested data.
+
+activate UI
+UI --> CTR: createUS406(mmsiCode, initialTime, endTime)
+activate CTR
+
+CTR --> US: createUS406(mmsiCode, initialTime, endTime)
+activate US
+
+US --> US: initialize(mmsiCode, initialTime, endTime)
+
+US --> TXT: WriteTxt(information)
+activate TXT
+deactivate TXT
+deactivate US
+deactivate CTR
+
+UI --> FM: show the information.
+deactivate UI
+deactivate FM
+
+@enduml

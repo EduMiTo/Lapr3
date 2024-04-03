@@ -1,0 +1,31 @@
+vessel type: 30
+MMSI	Travelled distance	Mean Sog
+303221000	0,00	0,00
+
+vessel type: 60
+MMSI	Travelled distance	Mean Sog
+229857000	2020,86	1,14
+249047000	30,54	0,05
+303267000	0,00	0,00
+
+vessel type: 70
+MMSI	Travelled distance	Mean Sog
+257881000	78959,16	12,48
+212180000	54077,17	11,52
+210950000	33672,16	13,02
+
+vessel type: 79
+MMSI	Travelled distance	Mean Sog
+636092932	9,04	0,00
+636019825	0,00	9,54
+
+vessel type: 80
+MMSI	Travelled distance	Mean Sog
+229767000	75787,59	19,75
+258692000	0,00	10,34
+
+vessel type: 90
+MMSI	Travelled distance	Mean Sog
+235092459	0,00	0,20
+
+

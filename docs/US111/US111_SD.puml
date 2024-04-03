@@ -1,0 +1,63 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+
+participant ":SendToDBUI" as SSUI
+participant ":SendToDBController" as SSC
+participant ":DatabaseImporting" as DBI
+
+
+
+activate TM
+
+TM -> SSUI: asks to import data from java to database
+activate SSUI
+SSUI --> TM: show the types
+deactivate SSUI
+TM -> SSUI: selects the types
+
+activate SSUI
+SSUI -> SSC: importdata()
+activate SSC
+
+SSC -> DBI: importShipAndPositions()
+activate DBI
+DBI -> DBI: saveShip()
+activate DBI
+deactivate DBI
+
+DBI -> DBI : saveShipToDatabase()
+activate DBI
+deactivate DBI
+
+DBI -> DBI : isShipOnDatabase()
+
+activate DBI
+deactivate DBI
+
+alt if isShipOnDatabase = true
+
+DBI->DBI: updateShipOnDatabase()
+activate DBI
+deactivate DBI
+
+else
+
+DBI->DBI: insertShipOnDatabase()
+activate DBI
+deactivate DBI
+
+end
+
+DBI -> DBI: executeShipQueryOnDatabase()
+activate DBI
+deactivate DBI
+
+deactivate DBI
+
+
+
+deactivate SSUI
+deactivate TM
+@enduml

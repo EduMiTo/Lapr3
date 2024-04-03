@@ -1,0 +1,77 @@
+@startuml
+autonumber
+
+actor "Port Manager" as TM
+participant ":PortImportUI" as IUI
+participant ":PortImportController" as IC
+participant ":Company" as COMP
+participant "port2dTree\n:Port2dTree" as BSTS
+participant ":CountryStore" as cs
+participant "country\n:Country" as country
+
+participant "placeLocation\n:PlaceLocation" as placeLocation
+participant "port\n:Port" as port
+
+participant "file\n:File" as file
+participant "bufferedReader\n:BufferedReader" as br
+participant "header\n:String[]" as header
+participant "line\n:String" as line
+
+
+
+activate TM
+
+TM-> IUI: asks to import ship information from a CSV file
+activate IUI
+IUI--> TM:   asks to select a .csv file
+deactivate IUI
+TM-> IUI: selects the .csv files
+activate IUI
+IUI ->IC: portImportCSV(file)
+activate IC
+IC -> COMP: getPort2dTree()
+activate COMP
+deactivate COMP
+
+IC -> COMP: getCountryList()
+activate COMP
+deactivate COMP
+
+IC -> br : line= readLine()
+activate br
+deactivate br
+
+IC -> line: header= split()
+activate line
+deactivate line
+loop
+IC -> br: lines= readLine()
+activate br
+deactivate br
+
+IC -> cs: country=verify()
+activate cs
+deactivate cs
+
+alt country==null
+IC ->country**: create(lines[1], lines[0])
+
+
+end
+
+IC -> placeLocation**: create(lines[4],lines[5],country)
+
+
+IC -> port**: create(lines[2],lines[3], placeLocation)
+
+IC -> BSTS : insert(port)
+activate BSTS
+deactivate BSTS
+
+end
+
+deactivate IC
+IUI--> TM: informs operation success
+deactivate IUI
+deactivate TM
+@enduml

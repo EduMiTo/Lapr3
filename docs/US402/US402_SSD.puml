@@ -1,0 +1,15 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":System" as S
+
+activate TM
+
+TM-> S: asks to know the shortest path between two locals
+activate S
+S --> TM:   shows the path
+deactivate S
+
+deactivate TM
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class US304{
+-databaseConnection
+-information
++initialize()
+}
+
+class US304Controller{
+-company
++CallUs304()
+}
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US304Controller..>US304
+
+US304 ..> WriteTxt
+
+
+@enduml

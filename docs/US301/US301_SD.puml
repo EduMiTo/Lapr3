@@ -1,0 +1,142 @@
+@startuml
+autonumber
+
+actor "Port Manager" as TM
+participant ":graphBuilderUI" as IUI
+participant ":graphBuilderController" as IC
+participant ":Company" as COMP
+participant ":CountryStore" as cs
+participant ":BorderStore" as bs
+participant ":SeaDistStore" as ss
+participant ":portStore" as ps
+participant ":Distance" as dist
+
+participant "graph\n:MatrixGraph" as graph
+
+
+
+activate TM
+
+TM-> IUI: asks to create a graph
+
+activate IUI
+IUI ->IC: graphbuilder()
+activate IC
+
+IC -> COMP: getGraph()
+activate COMP
+deactivate COMP
+
+IC -> COMP: getPortStore()
+activate COMP
+deactivate COMP
+
+IC -> COMP: getCountryStore()
+activate COMP
+deactivate COMP
+
+IC -> COMP: getSeaDistStore()
+activate COMP
+deactivate COMP
+
+IC -> COMP: getBorderStore()
+activate COMP
+deactivate COMP
+
+IC-> cs: nGenericList()
+activate cs
+deactivate cs
+
+IC -> ps : nGenericList()
+activate ps
+deactivate ps
+
+IC-> bs : getCountriesThatHaveBorder()
+activate bs
+deactivate bs
+
+loop
+
+loop
+
+    IC -> dist : calculateDistance()
+    activate dist
+    deactivate dist
+
+    IC -> graph: addEdge()
+    activate graph
+    deactivate graph
+    IC -> graph: addEdge()
+    activate graph
+    deactivate graph
+
+end
+
+    IC -> ps: closestporttocapital()
+    activate ps
+    deactivate ps
+
+    IC -> dist : calculateDistance()
+    activate dist
+    deactivate dist
+
+    IC -> graph: addEdge()
+    activate graph
+    deactivate graph
+    IC -> graph: addEdge()
+    activate graph
+    deactivate graph
+
+end
+
+
+IC-> ps : portsOfsameCountry()
+activate ps
+deactivate ps
+
+loop
+
+loop
+
+    IC-> ss : getSeaDist()
+    activate ss
+    deactivate ss
+
+    IC -> graph: addEdge()
+    activate graph
+    deactivate graph
+    IC -> graph: addEdge()
+    activate graph
+    deactivate graph
+
+end
+
+    IC -> ps: nClosestPortsOutOfCountry()
+    activate ps
+    deactivate ps
+
+    loop
+
+        IC-> ss : getSeaDist()
+        activate ss
+        deactivate ss
+
+        IC -> graph: addEdge()
+        activate graph
+        deactivate graph
+
+    end
+
+end
+
+IC -> COMP : setGraph()
+activate COMP
+deactivate COMP
+
+
+
+deactivate IC
+IUI--> TM: informs operation success
+deactivate IUI
+deactivate TM
+@enduml

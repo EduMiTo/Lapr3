@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor "Port Manager" as TM
+
+participant ":US407UI" as SAUI
+participant ":US407Controller" as SAC
+participant ":US407" as US
+participant ":WriteToFile" as WT
+
+
+
+activate TM
+
+TM -> SAUI:  wants to generate, a week in advance, the loading\n and unloading map of manifests.
+
+
+activate SAUI
+SAUI -> SAC: mapOfManifests()
+activate SAC
+
+SAC -> US: mapOfManifests()
+activate US
+
+
+US -> US: initialize()
+US -> WT: WriteTxt(info)
+activate WT
+deactivate WT
+
+
+deactivate SAC
+SAUI --> TM: shows requested information.
+
+deactivate SAUI
+deactivate TM
+@enduml

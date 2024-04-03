@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Ship{
+-mmsi
+-imo
+-callsign
+-ngenerators
+-generatortype
+-shipname
+-vesselType
+-lenght
+-width
+-capacity
+-draft
+-bstShipPosition
++getMMSI()
++getBSTPosition()
++getShipName()
+
+}
+
+class Company{
+-BSTShip
++getBSTShip()
+}
+
+class ShipPosition{
+-aisMessage
+-latitude
+-longitude
+-sog
+-cog
+-heading
+-position
+-cargo
+-transceiver
++getAisMessage()
++getLatitude()
++getLongitude()
++getSog()
++getCog()
++getHeading()
+}
+
+abstract BSTShip{
+-root
++search()
+}
+
+abstract BSTShipPosition {
+-root
++searchSpecificDatePeriodCall()
+}
+
+
+class PositionalMessagesController{
+-company
++importCSV()
+}
+
+
+PositionalMessagesController ..>Company
+PositionalMessagesController ..>BSTShip
+PositionalMessagesController ..>BSTShipPosition
+PositionalMessagesController ..>ShipPosition
+PositionalMessagesController ..>Ship
+PositionalMessagesController..>WriteTxt
+
+
+BSTShip ...>BSTShipPosition
+BSTShip ...>Ship
+
+BSTShipPosition ...>ShipPosition
+
+
+Ship --> ShipPosition
+@enduml

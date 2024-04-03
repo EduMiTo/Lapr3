@@ -1,0 +1,22 @@
+@startuml
+autonumber
+
+actor "Traffic Manager" as TM
+participant ":System" as S
+activate TM
+
+TM -> S: asks to show the information about a ship
+
+activate S
+S --> TM: asks the code of the ship
+deactivate S
+
+TM -> S: type the requested data
+
+activate S
+S --> TM: shows the information associated\n with the ship code
+deactivate S
+
+deactivate S
+deactivate TM
+@enduml

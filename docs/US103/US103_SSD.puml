@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "TrafficManager" as TM
+participant ":System" as S
+activate TM
+
+TM -> S: asks to show the positional messages about a especific ship
+
+activate S
+S --> TM: asks the code of the ship and the date
+deactivate S
+
+TM -> S: type the requested data
+
+activate S
+S --> TM: shows the information about the ship
+deactivate S
+
+deactivate S
+deactivate TM
+@enduml

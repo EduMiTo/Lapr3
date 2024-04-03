@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class ContainerStore{
+-containers
++neededEnergyToSupplyContainer()
++buildMatrixAuxOfContainers()
++verifySidesAffected()
++calculateEnergy3side()
++calculateEnergy2side()
++calculateEnergy1side()
+}
+
+
+
+class US414Controller{
+-company
+-containerStore
++neededEnergyToSupplyContainer()
+}
+
+
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US414Controller..>ContainerStore
+
+US414Controller ..> WriteTxt
+
+
+@enduml

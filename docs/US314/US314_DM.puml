@@ -1,0 +1,45 @@
+@startuml
+
+hide methods
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Containers {
+-x
+-y
+-z
+-containerNumber
+-checkDigit
+-isoCode
+-width
+-height
+-length
+-payLoad
+-tare
+-gross
+}
+
+class CargoManifest {
+-containerNumber
+}
+
+class Ship {
+-mmsiCode
+-name
+-imoCode
+-numberEnergyGenerators
+-generatorPower
+-callSign
+-vesselType
+-length
+-width
+-capacity
+-draft
+}
+
+
+Containers "1..*"--"1..*" CargoManifest: relate >
+
+Ship "1"--"1..*" Containers : transport >
+
+@enduml

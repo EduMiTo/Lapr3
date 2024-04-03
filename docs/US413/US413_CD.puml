@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class ContainerStore{
+-containers
++calculateEnergySpecificTripNotRefri()
++calculateEnergySpecificTripRefri()
++calculateEnergySpecificTrip()
++numberOfRefrigerated()
+}
+
+
+
+class US413Controller{
+-company
+-containerStore
++calculateEnergySpecificTrip()
+}
+
+
+
+class WriteTxt{
++writetxt()
+}
+
+
+
+US413Controller..>ContainerStore
+
+US413Controller ..> WriteTxt
+
+
+@enduml

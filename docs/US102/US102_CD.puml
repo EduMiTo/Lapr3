@@ -1,0 +1,49 @@
+@startuml
+
+class Ship{
+-mmsi
+-imo
+-callsign
+-ngenerators
+-generatortype
+-shipname
+-vesselType
+-lenght
+-width
+-capacity
+-draft
+-bstShipPosition
++getMMSI()
++getImo()
++getCallSign()
++getShipName()
++getVesselType()
+}
+
+class Company{
+-BSTShip
++getBSTShip()
+}
+
+abstract BSTShip{
+-root
++getShipsByMMSI(mmsi)
++getShipsByIMO(imo)
++getShipsByCallSign(callSign)
+}
+
+class SearchShipController{
+-company
++importCSV()
+}
+
+
+SearchShipController..>App
+SearchShipController..>Company
+SearchShipController..>BSTShip
+SearchShipController..>Ship
+SearchShipController..>WriteTxt
+
+BSTShip ...>Ship
+
+@enduml

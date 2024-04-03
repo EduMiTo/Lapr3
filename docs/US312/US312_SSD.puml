@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+
+actor "Client" as C
+participant ":System" as S
+activate C
+
+C -> S: want to know the current status of a specific container
+
+activate S
+S --> C:  asks for container code (containerNumberid, clientLoggin)
+deactivate S
+
+C -> S: type the requested data
+
+activate S
+S --> C: shows the information that was requested
+deactivate S
+
+deactivate S
+deactivate C
+
+@enduml
